@@ -66,8 +66,7 @@
     - Kontynuacja pracy
     - Final touch
     - Prezentacje swoich projektów
-    - Zakończenie i wręczenie certyfikatów uczestnictwa (może)
-
+    - Zakończenie i wręczenie certyfikatów uczestnictwa
 <hr />
 
 Oryginalne repo: [Kurs epic react](https://github.com/kentcdodds/react-fundamentals)
