@@ -16,8 +16,11 @@
 
 - **Czas trwania**: 7 tygodni (1 sierpnia - 21 września 2025)
 - **Format**: 5 cotygodniowych list zadań + 2-dniowy hackathon
+- **Zadania**: Polegać będą na wykonaniu zadań przygotowanych w repozytorium i zrobieniu pr na github
 - **Cel**: Opanowanie React fundamentals i nowoczesnego frontend developmentu
 - **Zakończenie**: Praktyczny hackathon z realnym projektem
+
+> [Docsy odnośnie githuba](https://docs.solvro.pl/git-github/intro/5-github/)
 
 ## 📚 Spis treści
 
@@ -41,12 +44,17 @@
 
 ### Tydzień 4: Wzorce (22-29 sierpnia)
 - **Lista 4**: Advanced Patterns & React Performance
-  - Compound Components, Control Props, State Reducer
+  - Compound Components
+  - Control Props
+  - State Reducer
   
 
 ### Tydzień 5: Optymalizajca (29 sierpnia - 5 września)
 - **Lista 5**: Testing React Apps i React Suspense
-  - useMemo, React.memo, code‑splitting, profilowanie
+  - useMemo
+  - React.memo
+  - code‑splitting
+  - profilowanie
 
 ### Co dalej: Zobaczymy (5-19 września)
 - Możliwe jakieś podsumowanie lub powtórki
