@@ -39,19 +39,18 @@
   - useReducer, useCallback, useContext
   - useLayoutEffect, useImperativeHandle
 
-### Tydzień 4: Wzorce i optymalizacja (22-29 sierpnia)
+### Tydzień 4: Wzorce (22-29 sierpnia)
 - **Lista 4**: Advanced Patterns & React Performance
   - Compound Components, Control Props, State Reducer
+  
+
+### Tydzień 5: Optymalizajca (29 sierpnia - 5 września)
+- **Lista 5**: Testing React Apps i React Suspense
   - useMemo, React.memo, code‑splitting, profilowanie
 
-### Tydzień 5: Testowanie i Suspense (29 sierpnia - 5 września)
-- **Lista 5**: Testing React Apps i React Suspense
-  - React Testing Library: testy komponentów i hooków
-  - Mockowanie, testy jednostkowe i integracyjne
-  - useTransition, Suspense, SuspenseList
-
 ### Co dalej: Zobaczymy (5-19 września)
-- Możliwe jakieś podsumowanie
+- Możliwe jakieś podsumowanie lub powtórki
+- Może coś się przeciągnie i trzeba będzie nadrobić
 - Albo coś dodatkowo jeśli będzie wola (może next.js)
 
 ### Hackathon (20-21 września)
