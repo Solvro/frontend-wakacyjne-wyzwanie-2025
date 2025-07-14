@@ -111,7 +111,7 @@ Każde zadanie wymaga osobnego pull requesta:
     - Kontynuacja pracy
     - Final touch
     - Prezentacje swoich projektów
-    - Zakończenie i wręczenie certyfikatów uczestnictwa
+    - Zakończenie i podsumowanie
 
 # Kurs Epic React
 
