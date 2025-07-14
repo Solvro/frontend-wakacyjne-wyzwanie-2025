@@ -1,5 +1,5 @@
 <div>
-  <h1 align="center">🌟 Wakacyjne wyzwanie - frontend</h1>
+  <h1 align="center">🌟 Od zera do frontend developera 🌟<br/>Wakacyjne wyzwanie | Solvro 2025</h1>
   <strong>
     Intensywny kurs frontend developmentu dla ambitnych programistów
   </strong>
