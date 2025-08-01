@@ -96,22 +96,7 @@ Każde zadanie wymaga osobnego pull requesta:
 - Może coś się przeciągnie i trzeba będzie nadrobić
 - Albo coś dodatkowo jeśli będzie wola (może next.js)
 
-### Hackathon (20-21 września)
-
-- **2-dniowy hackathon**
-
-  - **Dzień 1 (od rana do wieczora):**
-
-    - Przedstawienie tematu
-    - Podzielenie na zespoły
-    - Wymyślenie pomysłów i ich konsultacja
-    - Rozpoczęcie pracy
-
-  - **Dzień 2 (od rana do zobaczymy):**
-    - Kontynuacja pracy
-    - Final touch
-    - Prezentacje swoich projektów
-    - Zakończenie i podsumowanie
+### Hackathon (20 września)
 
 # Kurs Epic React
 
