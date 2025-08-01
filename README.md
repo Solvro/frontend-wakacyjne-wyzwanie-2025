@@ -54,7 +54,7 @@ Każde zadanie wymaga osobnego pull requesta:
 
 ## 📚 Spis treści
 
-### Tydzień 1: Podstawy React (1-8 sierpnia)
+### Tydzień 1: Podstawy React (4-8 sierpnia)
 
 - **Lista 1**: React Fundamentals (moduł 1)
   - Ręczne dodawanie DOM / Raw React API
