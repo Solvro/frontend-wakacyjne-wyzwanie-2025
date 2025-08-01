@@ -14,7 +14,7 @@
 
 - **Wiedza na start**: Znajomość choćby podstawowa JavaScriptu
 - **Czas trwania**: 7 tygodni (1 sierpnia - 21 września 2025)
-- **Format**: 5 cotygodniowych list zadań + 2-dniowy hackathon
+- **Format**: 5 cotygodniowych list zadań + 1-dniowy hackathon
 - **Zadania**: Polegać będą na wykonaniu zadań przygotowanych w repozytorium i zrobieniu pr na github
 - **Cel**: Opanowanie React fundamentals i nowoczesnego frontend developmentu
 - **Zakończenie**: Praktyczny hackathon z realnym projektem
