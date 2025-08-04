@@ -100,4 +100,4 @@ Każde zadanie wymaga osobnego pull requesta:
 
 # Kurs Epic React
 
-Link do kursu: https://drive.google.com/drive/u/3/folders/1Sa1rvv1kbrCDzOyiYO5CGbQctbbljEzD
+Link do kursu: https://drive.google.com/drive/folders/1Sa1rvv1kbrCDzOyiYO5CGbQctbbljEzD?usp=sharing
