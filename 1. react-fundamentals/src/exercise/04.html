@@ -11,14 +11,30 @@
 
     // 🐨 use that function in place of the divs below with:
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
-    const element = (
-      <div className="container">
-        <div className="message">Hello World</div>
-        <div className="message">Goodbye World</div>
-      </div>
-    )
 
-    // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
+    function Message({children}){
+      return (<div className="message">{children}</div>);
+    }
+
+    //basic task
+    /*const element = (
+      <div className="container">
+        {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
+      </div>
+    )*/
+
+    //extra credit 1
+    /*const elementChildren = [React.createElement(Message, {children: 'Hello World'}), React.createElement(Message, {children: 'Goodbye World'})]
+    const element = React.createElement("div", {className: "container", children: elementChildren});*/
+
+    //extra credit 2
+    const element = (
+            <div className="container">
+              <Message>Hello World</Message>
+              <Message>Goodbye World</Message>
+            </div>
+    );
+
     ReactDOM.createRoot(document.getElementById('root')).render(element)
   </script>
 </body>
