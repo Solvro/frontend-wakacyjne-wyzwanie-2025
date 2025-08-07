@@ -19,15 +19,24 @@
 <!--   📜 https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append -->
 
 <body>
+  <!-- bare miniumum -->
   <div id="root"></div>
   <script type="module">
     const textDiv = document.createElement('div')
 
     // could get it in a form I guess
     const name = 'Bartosh'
-    textDiv.textContent = `Hello World, ${name}`
+    textDiv.textContent = `Hello World, ${name}!`
     textDiv.className = 'container' // idk why because there is no css with .container
 
     document.getElementById('root').append(textDiv)
+
+    // extra
+    const textDivJS = document.createElement('div')
+
+    textDivJS.textContent = `Hello World, ${name}! This time with JS like a boss!`
+    textDivJS.className = 'container' // idk why because there is no css with .container
+
+    document.body.append(textDivJS)
   </script>
 </body>
