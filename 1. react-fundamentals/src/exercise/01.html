@@ -17,3 +17,17 @@
 <!-- 🐨 Append the div to the root div using `append` -->
 <!--   💰 document.getElementById('root') -->
 <!--   📜 https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append -->
+
+<body>
+  <div id="root"></div>
+  <script type="module">
+    const textDiv = document.createElement('div')
+
+    // could get it in a form I guess
+    const name = 'Bartosh'
+    textDiv.textContent = `Hello World, ${name}`
+    textDiv.className = 'container' // idk why because there is no css with .container
+
+    document.getElementById('root').append(textDiv)
+  </script>
+</body>
