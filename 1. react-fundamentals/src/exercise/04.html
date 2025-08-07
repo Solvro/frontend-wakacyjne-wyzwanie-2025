@@ -23,6 +23,32 @@
       return <div className="message">{children}</div>
     }
 
+    // extra 3
+    function MessageExtra3({greeting, subject}) {
+      return (
+        <div className="message">
+          {greeting}
+          {greeting && subject ? ', ' : ''}
+          {subject}
+        </div>
+      )
+    }
+
+    const MessageExtra3PropTypes = {
+      string(props, propName, componentName) {
+        if (typeof props[propName] !== 'string') {
+          return new Error(`The property ${propName} has to be a text!`)
+        } else if (props[propName].trim() === '') {
+          return new Error(`The property ${propName} cannot be empty`)
+        }
+      },
+    }
+
+    MessageExtra3.propTypes = {
+      greeting: MessageExtra3PropTypes.string,
+      subject: MessageExtra3PropTypes.string,
+    }
+
     // 🐨 use that function in place of the divs below with:
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
 
@@ -43,6 +69,10 @@
         {React.createElement(message, {children: 'Goodbye World (extra 1)'})}
         <Message>Hello World (extra 2 - JSX tag)</Message>
         <Message>Goodbye World (extra 2 - JSX tag)</Message>
+        <MessageExtra3 greeting="Hello World" subject="(extra 3)" />
+        <MessageExtra3 greeting="Goodbye World" subject="(extra 3)" />
+        <MessageExtra3 subject="Lack of goodbye error" />
+        <MessageExtra3 greeting="Lack of subject error" />
       </div>
     )
 
