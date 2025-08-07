@@ -18,6 +18,11 @@
       return <div className="message">{children}</div>
     }
 
+    // extra 2
+    function Message({children}) {
+      return <div className="message">{children}</div>
+    }
+
     // 🐨 use that function in place of the divs below with:
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
 
@@ -36,6 +41,8 @@
         {message({children: 'Goodbye World'})}
         {React.createElement(message, {children: 'Hello World (extra 1)'})}
         {React.createElement(message, {children: 'Goodbye World (extra 1)'})}
+        <Message>Hello World (extra 2 - JSX tag)</Message>
+        <Message>Goodbye World (extra 2 - JSX tag)</Message>
       </div>
     )
 
