@@ -10,7 +10,9 @@
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
   -->
 
+  <!-- Add React -->
   <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
+  <!-- Add React DOM -->
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
 
   <script type="module">
@@ -37,5 +39,35 @@
     // 🐨 Please re-implement the regular document.createElement code above
     // with these React API calls
     // 💰 The example in the markdown file should be a good hint for you.
+  </script>
+</body>
+
+<!-- extra -->
+<body>
+  <!-- Add React -->
+  <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
+  <!-- Add React DOM -->
+  <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
+
+  <script type="module">
+    const rootDiv = document.createElement('div')
+    rootDiv.id = 'root'
+    rootDiv.style = 'padding: 8px'
+    document.body.append(rootDiv)
+
+    const span1 = React.createElement('span', {
+      children: 'Hello World! ',
+    })
+
+    const span2 = React.createElement('span', {
+      children: 'This is extra implementation (like a boss)!',
+    })
+
+    const containerDiv = React.createElement('div', {
+      className: 'container',
+      children: [span1, span2],
+    })
+
+    ReactDOM.createRoot(rootDiv).render(containerDiv)
   </script>
 </body>
