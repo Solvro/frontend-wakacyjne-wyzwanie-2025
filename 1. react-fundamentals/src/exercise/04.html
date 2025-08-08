@@ -1,24 +1,80 @@
-<!-- Creating custom components -->
-<!-- http://localhost:3000/isolated/exercise/04.html -->
+<!DOCTYPE html>
+<html lang="en">
 
 <body>
   <div id="root"></div>
   <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
-  <script type="text/babel">
-    // 🐨 Make a function called `message` which returns the JSX we want to share
 
-    // 🐨 use that function in place of the divs below with:
-    // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
+  <!--  4
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+  -->
+
+  <script type="text/babel">
+    // function Message(props){
+    //   return <div className="message">{props.children}</div>
+    // }
+
+    // Background
+    // const helloElement = message({children: 'Hello World'})
+    // const goodbyeElement = message({children: 'Goodbye World'})
+    // console.log(helloElement)
+    // console.log(goodbyeElement)
+
+    // 1
+    // const helloElement = React.createElement(message, {children: 'Hello World'})
+    // const goodbyeElement = React.createElement(message, {children: 'Goodbye World'})
+    // console.log(helloElement)
+    // console.log(goodbyeElement)
+
+    // 2
+    // const helloElement = <Message> Hello World </Message>  // Changed lowercase m to uppercase M
+    // const goodbyeElement = <Message> Goodbye World </Message>
+    // console.log(helloElement)
+    // console.log(goodbyeElement)
+
+    // 3
+    function Message({subject, greeting}) {
+      return (
+              <div className="message">
+                {greeting}, {subject}
+              </div>
+      )
+    }
+
+    const PropTypes = {
+      string(props, propName, componentName) {
+        if (typeof props[propName] !== 'string') {
+          return new Error(
+              `Look: component ${componentName} needs the prop ${propName} to be a string, but a ${typeof props[propName]} was passed`,
+          )
+        }
+      },
+    }
+
+    Message.propTypes = {
+      subject: PropTypes.string.isRequired,
+      greeting: PropTypes.string.isRequired,
+    }
+
     const element = (
-      <div className="container">
-        <div className="message">Hello World</div>
-        <div className="message">Goodbye World</div>
+      <div className = "container">
+        <Message greeting = "Hello" subject = "World" />
+        <Message greeting = "Goodbye" subject = "World" />
       </div>
     )
 
-    // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
+    // 5
+    // const element = (
+    //         <>    // Or <React.Fragment>
+    //           <Message subject= "World" greeting = "Hello" />
+    //           <Message subject ="World" greeting = "Goodbye" />
+    //         </>
+    // )
+
     ReactDOM.createRoot(document.getElementById('root')).render(element)
   </script>
 </body>
+
+</html>
