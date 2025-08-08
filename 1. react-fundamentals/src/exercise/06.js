@@ -91,16 +91,48 @@ function UsernameFormExtra2({onSubmitUsername}) {
   )
 }
 
+function UsernameFormExtra3({onSubmitUsername}) {
+  const [username, setUsername] = useState('')
+  const inputRef = useRef(null)
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    const username = inputRef.current.value
+    onSubmitUsername(username)
+  }
+
+  function handleChange(event) {
+    setUsername(event.target.value.toLowerCase())
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="usernameInputExtra1">Username:</label>
+        <input
+          id="usernameInputExtra1"
+          type="text"
+          onChange={handleChange}
+          value={username}
+        />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  )
+}
+
 function App() {
   const onSubmitUsername = username => alert(`You entered: ${username}`)
   return (
     <div className="flex">
       <h3>Task</h3>
       <UsernameForm onSubmitUsername={onSubmitUsername} />
-      <h3>Extra 1</h3>
+      <h3>Extra 1 (ref)</h3>
       <UsernameFormExtra1 onSubmitUsername={onSubmitUsername} />
-      <h3>Extra 2</h3>
+      <h3>Extra 2 (uppercase error)</h3>
       <UsernameFormExtra2 onSubmitUsername={onSubmitUsername} />
+      <h3>Extra 3 (uppercase to lower)</h3>
+      <UsernameFormExtra3 onSubmitUsername={onSubmitUsername} />
     </div>
   )
 }
