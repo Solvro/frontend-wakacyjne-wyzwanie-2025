@@ -1,7 +1,7 @@
 // Basic Forms
 // http://localhost:3000/isolated/exercise/06.js
 
-import * as React from 'react'
+import {useRef} from 'react'
 
 function UsernameForm({onSubmitUsername}) {
   // 🐨 add a submit event handler here (`handleSubmit`).
@@ -37,9 +37,36 @@ function UsernameForm({onSubmitUsername}) {
   )
 }
 
+function UsernameFormExtra1({onSubmitUsername}) {
+  const inputRef = useRef(null)
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    const username = inputRef.current.value
+    onSubmitUsername(username)
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="usernameInputExtra1">Username:</label>
+        <input id="usernameInputExtra1" type="text" ref={inputRef} />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  )
+}
+
 function App() {
   const onSubmitUsername = username => alert(`You entered: ${username}`)
-  return <UsernameForm onSubmitUsername={onSubmitUsername} />
+  return (
+    <div className="flex">
+      <h3>Task</h3>
+      <UsernameForm onSubmitUsername={onSubmitUsername} />
+      <h3>Extra 1</h3>
+      <UsernameFormExtra1 onSubmitUsername={onSubmitUsername} />
+    </div>
+  )
 }
 
 export default App
