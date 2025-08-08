@@ -1,7 +1,7 @@
 // Basic Forms
 // http://localhost:3000/isolated/exercise/06.js
 
-import {useRef} from 'react'
+import {useRef, useState} from 'react'
 
 function UsernameForm({onSubmitUsername}) {
   // 🐨 add a submit event handler here (`handleSubmit`).
@@ -57,6 +57,40 @@ function UsernameFormExtra1({onSubmitUsername}) {
   )
 }
 
+function UsernameFormExtra2({onSubmitUsername}) {
+  const [error, setError] = useState(null)
+  const inputRef = useRef(null)
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    const username = inputRef.current.value
+    onSubmitUsername(username)
+  }
+
+  function handleChange(event) {
+    const value = event.target.value
+    value.toLowerCase() !== value
+      ? setError('The input value has to be lowercase')
+      : setError(null)
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="usernameInputExtra1">Username:</label>
+        <input
+          id="usernameInputExtra1"
+          type="text"
+          onChange={handleChange}
+          ref={inputRef}
+        />
+        {error && <p style={{color: 'red'}}>{error}</p>}
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  )
+}
+
 function App() {
   const onSubmitUsername = username => alert(`You entered: ${username}`)
   return (
@@ -65,6 +99,8 @@ function App() {
       <UsernameForm onSubmitUsername={onSubmitUsername} />
       <h3>Extra 1</h3>
       <UsernameFormExtra1 onSubmitUsername={onSubmitUsername} />
+      <h3>Extra 2</h3>
+      <UsernameFormExtra2 onSubmitUsername={onSubmitUsername} />
     </div>
   )
 }
