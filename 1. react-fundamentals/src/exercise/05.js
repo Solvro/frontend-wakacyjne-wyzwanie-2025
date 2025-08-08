@@ -15,12 +15,8 @@ import '../box-styles.css'
 // 💰 Here are available style attributes: backgroundColor, fontStyle
 
 // extra 1
-function Box({style, className, children}) {
-  return (
-    <div className={className} style={style}>
-      {children}
-    </div>
-  )
+function Box({style, size, ...props}) {
+  return <div className={`box box--${size}`} style={style} {...props} />
 }
 
 const smallBox = (
