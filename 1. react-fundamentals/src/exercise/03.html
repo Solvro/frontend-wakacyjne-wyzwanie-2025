@@ -11,15 +11,40 @@
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
   -->
 
-  <script type="module">
+  <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+
+  <script type="text/babel">
     // 🐨 on the script tag above, change `type="module"`
     // to `type="text/babel"` so babel will compile this code for the browser to run.
 
     // 🐨 re-implement this using JSX!
-    const element = React.createElement('div', {
-      className: 'container',
-      children: 'Hello World',
-    })
+
+    // const element = React.createElement('div', {
+    //   className: 'container',
+    //   children: 'Hello World',
+    // })
+
+    const element1 = <div className="container1">Hello World</div>
+
+    // extra 1
+    const className1 = 'container2'
+    const children1 = 'Hello World with interpolation like a boss!'
+    const element2 = <div className={className1}>{children1}</div>
+
+    // extra 2
+    const children = 'Hello World with props like a boss!'
+    const className = 'container3'
+    const props = {children, className}
+    const element3 = <div {...props} />
+
+    // wrapper
+    const containerDiv = (
+      <div className="parentContainer">
+        {element1}
+        {element2}
+        {element3}
+      </div>
+    )
 
     // 💰 there are a few subtle differences between JSX and HTML. One such
     // difference is how you apply a class to an element in JSX is by using
@@ -27,6 +52,6 @@
     // 📜 You can learn the differences between JSX and HTML syntax from the React docs here:
     // https://react.dev/reference/react-dom/components/common
 
-    ReactDOM.createRoot(document.getElementById('root')).render(element)
+    ReactDOM.createRoot(document.getElementById('root')).render(containerDiv)
   </script>
 </body>
