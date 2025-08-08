@@ -6,6 +6,10 @@
   <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+
+  <!-- PropTypes package -->
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+
   <script type="text/babel">
     // 🐨 Make a function called `message` which returns the JSX we want to share
 
@@ -49,6 +53,22 @@
       subject: MessageExtra3PropTypes.string,
     }
 
+    // extra 4
+    function MessageExtra4({greeting, subject}) {
+      return (
+        <div className="message">
+          {greeting}
+          {greeting && subject ? ', ' : ''}
+          {subject}
+        </div>
+      )
+    }
+
+    MessageExtra4.propTypes = {
+      greeting: PropTypes.string.isRequired,
+      subject: PropTypes.string.isRequired,
+    }
+
     // 🐨 use that function in place of the divs below with:
     // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
 
@@ -60,7 +80,9 @@
     // )
 
     const element = (
-      <div className="container">
+      // <div className="container">  ---->  <>
+      // there is no container div, all children are simpty siblings in the root div
+      <>
         {messageArrowNotation({children: 'Hello World (arrow notation)'})}
         {messageArrowNotation({children: 'Goodbye World (arrow notation)'})}
         {message({children: 'Hello World'})}
@@ -73,7 +95,11 @@
         <MessageExtra3 greeting="Goodbye World" subject="(extra 3)" />
         <MessageExtra3 subject="Lack of goodbye error" />
         <MessageExtra3 greeting="Lack of subject error" />
-      </div>
+        <MessageExtra4 greeting="Hello World" subject="(extra 4)" />
+        <MessageExtra4 greeting="Goodbye World" subject="(extra 4)" />
+        <MessageExtra4 subject="Lack of goodbye error" />
+        <MessageExtra4 greeting="Lack of subject error" />
+      </>
     )
 
     // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
