@@ -1,6 +1,5 @@
 <div>
-<<<<<<< HEAD
-  <h1 align="center"><a href="https://www.epicreact.dev/modules/react-fundamentals-v1/react-fundamentals-welcome">React Fundamentals 🚀 EpicReact.Dev</a></h1>
+  <h1 align="center"><a href="https://epicreact.dev/fundamentals">React Fundamentals 🚀 EpicReact.Dev</a></h1>
   <strong>
     Learn the foundational concepts necessary for building
     React applications and libraries
@@ -274,7 +273,6 @@ Thanks goes to these wonderful people
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ambujsahu81"><img src="https://avatars.githubusercontent.com/u/118078892?v=4?s=100" width="100px;" alt="Ambuj sahu"/><br /><sub><b>Ambuj sahu</b></sub></a><br /><a href="https://github.com/kentcdodds/react-fundamentals/commits?author=ambujsahu81" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mattchannn"><img src="https://avatars.githubusercontent.com/u/48675050?v=4?s=100" width="100px;" alt="Mat Chan"/><br /><sub><b>Mat Chan</b></sub></a><br /><a href="https://github.com/kentcdodds/react-fundamentals/commits?author=mattchannn" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jkrooncoding"><img src="https://avatars.githubusercontent.com/u/27491767?v=4?s=100" width="100px;" alt="Jesse Kroon"/><br /><sub><b>Jesse Kroon</b></sub></a><br /><a href="https://github.com/kentcdodds/react-fundamentals/commits?author=jkrooncoding" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Creeland"><img src="https://avatars.githubusercontent.com/u/518406?v=4?s=100" width="100px;" alt="Creeland A. Provinsal "/><br /><sub><b>Creeland A. Provinsal </b></sub></a><br /><a href="https://github.com/kentcdodds/react-fundamentals/commits?author=Creeland" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
@@ -314,107 +312,3 @@ Thank you! [https://kcd.im/rf-ws-feedback](https://kcd.im/rf-ws-feedback)
 [mac-path]: http://stackoverflow.com/a/24322978/971592
 [issue]: https://github.com/kentcdodds/react-fundamentals/issues/new
 <!-- prettier-ignore-end -->
-=======
-  <h1 align="center">🌟 Od zera do frontend developera 🌟<br/>Wakacyjne wyzwanie | Solvro 2025</h1>
-  <strong>
-    Intensywny kurs frontend developmentu dla ambitnych programistów
-  </strong>
-  <p>
-    Podczas 7 tygodni zgłębisz fundamenty React oraz nowoczesne narzędzia frontend developmentu.
-    Zakończysz kurs dwudniowym hackathon'em, gdzie zademonstrujesz zdobyte umiejętności
-    w praktycznym projekcie.
-  </p>
-</div>
-
-## 🎯 Założenia kursu
-
-- **Wiedza na start**: Znajomość choćby podstawowa JavaScriptu
-- **Czas trwania**: 7 tygodni (1 sierpnia - 21 września 2025)
-- **Format**: 5 cotygodniowych list zadań + 1-dniowy hackathon
-- **Zadania**: Polegać będą na wykonaniu zadań przygotowanych w repozytorium i zrobieniu pr na github
-- **Cel**: Opanowanie React fundamentals i nowoczesnego frontend developmentu
-- **Zakończenie**: Praktyczny hackathon z realnym projektem
-
-## 📖 Zasady
-
-### 1. Harmonogram tygodniowy
-
-Co tydzień otrzymacie informację o zadaniach do wykonania - wszystkie będą numerowane dla łatwości śledzenia postępów.
-
-### 2. Praca ciągła
-
-Wykonujcie zadania na bieżąco i nie wahajcie się zadawać pytań:
-
-- **Zadawajcie pytania** - jestem tutaj dla Was i odpowiem szybko
-- **Nie ma głupich pytań** - są tylko te, których nie zadacie
-- **Pytania mogą dotyczyć wszystkiego** - nie tylko kursu, ale także Waszych prywatnych projektów
-
-### 3. Pull requesty
-
-Każde zadanie wymaga osobnego pull requesta:
-
-- **Nazwa PR**: `${nrZadanka}. ${imieINazwisko}` (np. `1. Kamil Marczak`)
-- **Nazwa brancha**: `${nrZadanka}-${imie}-${nazwisko}` (np. `1-kamil-marczak`)
-- **Deadline**: Każde zadanie ma określony termin
-- **Code review**: Mogę przejrzeć Wasz kod i dać feedback
-
-> [Docsy odnośnie githuba](https://docs.solvro.pl/git-github/intro/5-github/)
-
-### 4. Polityka spóźnień
-
-- **Pierwsze spóźnienie**: Bez konsekwencji
-- **Drugie spóźnienie**: Wykluczenie z kursu
-- **Wyjątki**: W uzasadnionych przypadkach - po prostu napisz
-
-### 5. Najważniejsze - bawcie się dobrze! 🎉
-
-## 📚 Spis treści
-
-### Tydzień 1: Podstawy React (4-8 sierpnia)
-
-- **Lista 1**: React Fundamentals (moduł 1)
-  - Ręczne dodawanie DOM / Raw React API
-  - JSX, komponenty funkcyjne
-  - Style, formularze, listy
-  - Error Boundaries
-
-### Tydzień 2: Hooki React (część 1) (8-15 sierpnia)
-
-- **Lista 2**: React Hooks
-  - useState, useEffect
-  - Lifting state, useRef
-  - Fetch API
-
-### Tydzień 3: Hooki React (część 2) (15-22 sierpnia)
-
-- **Lista 3**: Advanced React Hooks (moduł 3)
-  - useReducer, useCallback, useContext
-  - useLayoutEffect, useImperativeHandle
-
-### Tydzień 4: Wzorce (22-29 sierpnia)
-
-- **Lista 4**: Advanced Patterns & React Performance
-  - Compound Components
-  - Control Props
-  - State Reducer
-
-### Tydzień 5: Optymalizajca (29 sierpnia - 5 września)
-
-- **Lista 5**: Testing React Apps i React Suspense
-  - useMemo
-  - React.memo
-  - code‑splitting
-  - profilowanie
-
-### Co dalej: Zobaczymy (5-19 września)
-
-- Możliwe jakieś podsumowanie lub powtórki
-- Może coś się przeciągnie i trzeba będzie nadrobić
-- Albo coś dodatkowo jeśli będzie wola (może next.js)
-
-### Hackathon (20 września)
-
-# Kurs Epic React
-
-Link do kursu: https://drive.google.com/drive/folders/1Sa1rvv1kbrCDzOyiYO5CGbQctbbljEzD?usp=sharing
->>>>>>> 2d050a65a28eb1a6057d50deb9052aa9f2a2491f

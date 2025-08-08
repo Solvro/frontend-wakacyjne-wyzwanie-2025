@@ -1,0 +1,84 @@
+{
+  "name": "advanced-react-hooks",
+  "title": "Advanced React Hooks 🔥",
+  "description": "The best resources for you to learn advanced react hooks",
+  "author": "Kent C. Dodds <me@kentcdodds.com> (https://kentcdodds.com/)",
+  "version": "1.0.0",
+  "private": true,
+  "keywords": [],
+  "homepage": "https://advanced-react-hooks.netlify.com/",
+  "license": "GPL-3.0-only",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=16",
+    "npm": ">=8.16.0"
+  },
+  "dependencies": {
+    "@kentcdodds/react-workshop-app": "^6.0.1",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.2.1",
+    "chalk": "^4.1.2",
+    "codegen.macro": "^4.1.0",
+    "mq-polyfill": "^1.1.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^3.1.4"
+  },
+  "devDependencies": {
+    "@craco/craco": "^6.4.3",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "husky": "^4.3.8",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "react-scripts": "^5.0.1"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "test:coverage": "npm run test -- --watchAll=false",
+    "test:exercises": "npm run test -- testing.*exercises\\/ --onlyChanged",
+    "setup": "node setup",
+    "lint": "eslint .",
+    "format": "prettier --write \"./src\"",
+    "validate": "npm-run-all --parallel build test:coverage lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "node ./scripts/pre-commit",
+      "pre-push": "node ./scripts/pre-push"
+    }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/final/**/*.js"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kentcdodds/advanced-react-hooks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kentcdodds/advanced-react-hooks/issues"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  }
+}
