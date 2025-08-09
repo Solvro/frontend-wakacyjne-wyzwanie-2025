@@ -1,8 +1,7 @@
 import {alfredTip} from '@kentcdodds/react-workshop-app/test-utils'
 import chalk from 'chalk'
 import {render, screen, prettyDOM} from '@testing-library/react'
-import App from '../final/05'
-// import App from '../exercise/05'
+import App from '../exercise/05'
 
 test('renders the correct styles new', async () => {
   render(<App />)
