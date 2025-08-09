@@ -4,8 +4,8 @@
     Intensywny kurs frontend developmentu dla ambitnych programistów
   </strong>
   <p>
-    Podczas 7 tygodni zgłębisz fundamenty React oraz nowoczesne narzędzia frontend developmentu.
-    Zakończysz kurs dwudniowym hackathon'em, gdzie zademonstrujesz zdobyte umiejętności
+    Podczas 6 tygodni zgłębisz fundamenty React oraz nowoczesne narzędzia frontend developmentu.
+    Zakończysz kurs hackathon'em, gdzie zademonstrujesz zdobyte umiejętności
     w praktycznym projekcie.
   </p>
 </div>
@@ -23,7 +23,7 @@
 
 ### 1. Harmonogram tygodniowy
 
-Co tydzień otrzymacie informację o zadaniach do wykonania - wszystkie będą numerowane dla łatwości śledzenia postępów.
+Co tydzień otrzymacie informację o zadaniach do wykonania na Discordzie - wszystkie będą numerowane dla łatwości śledzenia postępów. Tradycyjnych wykładów nie przewiduje, chyba że z goścmi na koniec.
 
 ### 2. Praca ciągła
 
