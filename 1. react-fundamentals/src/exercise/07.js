@@ -1,6 +1,3 @@
-// Rendering Lists
-// http://localhost:3000/isolated/exercise/07.js
-
 import * as React from 'react'
 
 const allItems = [
@@ -22,23 +19,22 @@ function App() {
     setItems(items.filter(i => i.id !== item.id))
   }
 
-  return (
-    <div className="keys">
-      <button disabled={items.length >= allItems.length} onClick={addItem}>
-        add item
-      </button>
-      <ul>
-        {items.map(item => (
-          // 🐨 add a key prop to the <li> below. Set it to item.id
-          <li>
-            <button onClick={() => removeItem(item)}>remove</button>{' '}
-            <label htmlFor={`${item.id}-input`}>{item.value}</label>{' '}
-            <input id={`${item.id}-input`} defaultValue={item.value} />
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
+return (
+  <div className="keys">
+    <button disabled={items.length >= allItems.length} onClick={addItem}>
+      add item
+    </button>
+    <ul>
+      {items.map(item => (
+        <li key={item.id}>
+          <button onClick={() => removeItem(item)}>remove</button>{' '}
+          <label htmlFor={`${item.id}-input`}>{item.value}</label>{' '}
+          <input id={`${item.id}-input`} defaultValue={item.value} />
+        </li>
+      ))}
+    </ul>
+  </div>
+)
 }
 
 export default App
