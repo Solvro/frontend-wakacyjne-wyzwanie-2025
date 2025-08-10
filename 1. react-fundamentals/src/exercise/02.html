@@ -10,20 +10,64 @@
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
   -->
 
+  <!-- Add React -->
+  <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
+  <!-- Add React DOM -->
+  <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
+
   <script type="module">
     const rootElement = document.getElementById('root')
 
-    // You're going to re-implement this code using React!
-    // 💣 So go ahead and delete this implementation (or comment it out for now)
+    // You're going to re-implement this code using Reaahead and delete this implementation (ct!
+    // 💣 So go or comment it out for now)
     // These three lines are similar to React.createElement
-    const element = document.createElement('div')
-    element.textContent = 'Hello World' // 💰 in React, you set this with the "children" prop
-    element.className = 'container' // 💰 in React, this is also called the "className" prop
+
+    // const element = document.createElement('div')
+    // element.textContent = 'Hello World' // 💰 in React, you set this with the "children" prop
+    // element.className = 'container' // 💰 in React, this is also called the "className" prop
+
+    const element = React.createElement('div', {
+      className: 'container',
+      children: 'Hello World!',
+    })
+
     // This is similar to ReactDOM.createRoot().render()
-    rootElement.append(element)
+    // rootElement.append(element)
+
+    ReactDOM.createRoot(rootElement).render(element)
 
     // 🐨 Please re-implement the regular document.createElement code above
     // with these React API calls
     // 💰 The example in the markdown file should be a good hint for you.
+  </script>
+</body>
+
+<!-- extra -->
+<body>
+  <!-- Add React -->
+  <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
+  <!-- Add React DOM -->
+  <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
+
+  <script type="module">
+    const rootDiv = document.createElement('div')
+    rootDiv.id = 'root'
+    rootDiv.style = 'padding: 8px'
+    document.body.append(rootDiv)
+
+    const span1 = React.createElement('span', {
+      children: 'Hello World! ',
+    })
+
+    const span2 = React.createElement('span', {
+      children: 'This is extra implementation (like a boss)!',
+    })
+
+    const containerDiv = React.createElement('div', {
+      className: 'container',
+      children: [span1, span2],
+    })
+
+    ReactDOM.createRoot(rootDiv).render(containerDiv)
   </script>
 </body>
