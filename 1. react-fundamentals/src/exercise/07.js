@@ -1,6 +1,3 @@
-// Rendering Lists
-// http://localhost:3000/isolated/exercise/07.js
-
 import * as React from 'react'
 
 const allItems = [
@@ -11,26 +8,30 @@ const allItems = [
 ]
 
 function App() {
-  const [items, setItems] = React.useState(allItems)
+
+  const [items, setItems] = React.useState(allItems)   // Stan przechowujący aktualnie wyświetlane elementy listy
 
   function addItem() {
+    //lista identyfikatorow elementow listy
     const itemIds = items.map(i => i.id)
+    // Szukamy w allItems elementu, ktorego id nie ma w stanie
+    //dodajemy go na koniec
     setItems([...items, allItems.find(i => !itemIds.includes(i.id))])
   }
 
   function removeItem(item) {
+    //nowa lista bez usuwanego
     setItems(items.filter(i => i.id !== item.id))
   }
 
   return (
     <div className="keys">
-      <button disabled={items.length >= allItems.length} onClick={addItem}>
+      <button disabled={items.length >= allItems.length} onClick={addItem}> 
         add item
       </button>
       <ul>
         {items.map(item => (
-          // 🐨 add a key prop to the <li> below. Set it to item.id
-          <li>
+          <li key = {item.id}>
             <button onClick={() => removeItem(item)}>remove</button>{' '}
             <label htmlFor={`${item.id}-input`}>{item.value}</label>{' '}
             <input id={`${item.id}-input`} defaultValue={item.value} />
