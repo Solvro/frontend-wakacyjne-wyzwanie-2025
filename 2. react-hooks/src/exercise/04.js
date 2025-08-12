@@ -1,10 +1,9 @@
 // useState: tic tac toe
 // http://localhost:3000/isolated/exercise/04.js
 
-import {useState} from 'react'
 import {useLocalStorageState} from '../utils'
 
-const SQUARES_KEY = 'squares'
+const DEFAULT_SQUARES = Array(9).fill(null)
 
 function Board() {
   // 🐨 squares is the state for this component. Add useState for squares
@@ -14,10 +13,12 @@ function Board() {
   //   const storedSquares = window.localStorage.getItem(SQUARES_KEY)
   //   return storedSquares ? JSON.parse(storedSquares) : Array(9).fill(null)
   // })
-  const [squares, setSquares] = useLocalStorageState(
-    SQUARES_KEY,
-    Array(9).fill(null),
-  )
+  const [state, setState] = useLocalStorageState('state', {
+    squares: DEFAULT_SQUARES,
+    history: [[DEFAULT_SQUARES]],
+  })
+
+  const {squares, history} = state
 
   // 🐨 We'll need the following bits of derived state:
   // - nextValue ('X' or 'O')
@@ -50,14 +51,44 @@ function Board() {
     squaresCopy[index] = nextValue
 
     // 🐨 set the squares to your copy
-    window.localStorage.setItem(SQUARES_KEY, JSON.stringify(squaresCopy))
-    setSquares(squaresCopy)
+    // window.localStorage.setItem(SQUARES_KEY, JSON.stringify(squaresCopy))
+    setState({squares: squaresCopy, history: [...history, [squaresCopy]]})
+  }
+
+  function HistorySection({history}) {
+    return (
+      <>
+        1.{' '}
+        <button onClick={restart} disabled={history.length === 0}>
+          Go to game start
+        </button>
+        {history?.map((_, historyIndex) => (
+          <div>
+            {historyIndex + 2}.{' '}
+            <button
+              disabled={historyIndex + 1 >= history.length}
+              onClick={() => goBack(historyIndex)}
+            >
+              Go to move #{historyIndex + 1}
+            </button>
+          </div>
+        ))}
+      </>
+    )
+  }
+
+  function goBack(historyIndex) {
+    const squaresSnapshot = history[historyIndex][0]
+    setState({
+      squares: squaresSnapshot,
+      history: history.slice(0, historyIndex + 1),
+    })
   }
 
   function restart() {
     // 🐨 reset the squares
     // 💰 `Array(9).fill(null)` will do it!
-    setSquares(Array(9).fill(null))
+    setState({squares: DEFAULT_SQUARES, history: []})
   }
 
   function renderSquare(i) {
@@ -69,27 +100,40 @@ function Board() {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '36px',
+      }}
+    >
       {/* 🐨 put the status in the div below */}
-      <div className="status">{status}</div>
-      <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
+
+      <div>
+        <div className="board-row">
+          {renderSquare(0)}
+          {renderSquare(1)}
+          {renderSquare(2)}
+        </div>
+        <div className="board-row">
+          {renderSquare(3)}
+          {renderSquare(4)}
+          {renderSquare(5)}
+        </div>
+        <div className="board-row">
+          {renderSquare(6)}
+          {renderSquare(7)}
+          {renderSquare(8)}
+        </div>
+        <button className="restart" onClick={restart}>
+          restart
+        </button>
       </div>
-      <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
+      <div>
+        <div className="status">{status}</div>
+        <HistorySection history={history} />
       </div>
-      <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
-      <button className="restart" onClick={restart}>
-        restart
-      </button>
     </div>
   )
 }
