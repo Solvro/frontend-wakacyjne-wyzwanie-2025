@@ -63,7 +63,7 @@ function Board() {
           Go to game start
         </button>
         {history?.map((_, historyIndex) => (
-          <div>
+          <div key={historyIndex}>
             {historyIndex + 2}.{' '}
             <button
               disabled={historyIndex + 1 >= history.length}
