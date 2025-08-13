@@ -1,6 +1,18 @@
 <!-- Basic JavaScript-rendered Hello World -->
 <!-- http://localhost:3000/isolated/exercise/01.html -->
+<html>
+    <body>
+        <div id="root"></div>
+        <script type="module">
+            const divText = document.createElement('div') 
+            divText.textContent = 'Hello World'
+            divText.className = 'container'
 
+            const rootElement = document.getElementById('root')
+            rootElement.append(divText)
+        </script>
+    </body>
+</html>
 <!-- 🐨 Create (in HTML) a <body> with a <div> with the id of "root" -->
 <!-- 🐨 Then create a <script type="module"> for your JavaScript -->
 <!--   📜 https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attributes -->
