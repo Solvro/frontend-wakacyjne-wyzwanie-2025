@@ -1,11 +1,12 @@
 // useState: tic tac toe
 // http://localhost:3000/isolated/exercise/04.js
+import {useLocalStorageState} from '../utils'
 
 import * as React from 'react'
 
 function Board() {
   // 🐨 squares is the state for this component. Add useState for squares
-  const squares = Array(9).fill(null)
+  const [squares, setSquares] = useLocalStorageState('squares', Array(9).fill(null),)
 
   // 🐨 We'll need the following bits of derived state:
   // - nextValue ('X' or 'O')
@@ -14,9 +15,20 @@ function Board() {
   // 💰 I've written the calculations for you! So you can use my utilities
   // below to create these variables
 
+
+  const nextValue = calculateNextValue(squares)
+  const winner = calculateWinner(squares)
+  const status = calculateStatus(winner, squares, nextValue)
+
   // This is the function your square click handler will call. `square` should
   // be an index. So if they click the center square, this will be `4`.
   function selectSquare(square) {
+    if(winner || squares[square]) {
+      return
+    }
+    const copy = [...squares]
+    copy[square] = nextValue
+    setSquares(copy)
     // 🐨 first, if there's already a winner or there's already a value at the
     // given square index (like someone clicked a square that's already been
     // clicked), then return early so we don't make any state changes
@@ -36,6 +48,7 @@ function Board() {
   function restart() {
     // 🐨 reset the squares
     // 💰 `Array(9).fill(null)` will do it!
+    setSquares(Array(9).fill(null))
   }
 
   function renderSquare(i) {
@@ -49,7 +62,7 @@ function Board() {
   return (
     <div>
       {/* 🐨 put the status in the div below */}
-      <div className="status">STATUS</div>
+      <div className="status">{status}</div>
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
