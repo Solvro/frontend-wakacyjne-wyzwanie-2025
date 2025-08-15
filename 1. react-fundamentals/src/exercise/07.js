@@ -1,6 +1,3 @@
-// Rendering Lists
-// http://localhost:3000/isolated/exercise/07.js
-
 import * as React from 'react'
 
 const allItems = [
@@ -29,8 +26,7 @@ function App() {
       </button>
       <ul>
         {items.map(item => (
-          // 🐨 add a key prop to the <li> below. Set it to item.id
-          <li>
+            <li key={item.id}>
             <button onClick={() => removeItem(item)}>remove</button>{' '}
             <label htmlFor={`${item.id}-input`}>{item.value}</label>{' '}
             <input id={`${item.id}-input`} defaultValue={item.value} />

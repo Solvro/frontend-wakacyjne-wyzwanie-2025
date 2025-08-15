@@ -1,5 +1,5 @@
 <div>
-  <h1 align="center"><a href="https://epicreact.dev/hooks">🎣 React Hooks 🚀 EpicReact.Dev</a></h1>
+  <h1 align="center"><a href="https://www.epicreact.dev/modules/react-hooks-v1/react-hooks-welcome">🎣 React Hooks 🚀 EpicReact.Dev</a></h1>
   <strong>
     Learn the ins and outs of React Hooks.
   </strong>
@@ -259,6 +259,7 @@ Thanks goes to these wonderful people
       <td align="center" valign="top" width="14.28%"><a href="http://www.heypano.com"><img src="https://avatars.githubusercontent.com/u/1577139?v=4?s=100" width="100px;" alt="Pano Papadatos"/><br /><sub><b>Pano Papadatos</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=heypano" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ASproson"><img src="https://avatars.githubusercontent.com/u/77736272?v=4?s=100" width="100px;" alt="Atlas Sproson"/><br /><sub><b>Atlas Sproson</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=ASproson" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://junagao.com"><img src="https://avatars.githubusercontent.com/u/615616?v=4?s=100" width="100px;" alt="juliane nagao"/><br /><sub><b>juliane nagao</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=junagao" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Creeland"><img src="https://avatars.githubusercontent.com/u/518406?v=4?s=100" width="100px;" alt="Creeland A. Provinsal "/><br /><sub><b>Creeland A. Provinsal </b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=Creeland" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
@@ -284,7 +285,7 @@ Thank you! https://kcd.im/rh-ws-feedback
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org
 [git]: https://git-scm.com/
-[build-badge]: https://img.shields.io/github/workflow/status/kentcdodds/react-hooks/validate/main?logo=github&style=flat-square
+[build-badge]: https://img.shields.io/github/actions/workflow/status/kentcdodds/react-hooks/validate.yml?branch=main&logo=github&style=flat-square
 [build]: https://github.com/kentcdodds/react-hooks/actions?query=workflow%3Avalidate
 [license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
 [license]: https://github.com/kentcdodds/react-hooks/blob/main/LICENSE
