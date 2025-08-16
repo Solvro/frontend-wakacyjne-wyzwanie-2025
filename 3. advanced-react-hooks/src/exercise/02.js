@@ -11,7 +11,7 @@ import {
 } from '../pokemon'
 
 // 🐨 this is going to be our generic asyncReducer
-function asyncReducer(state, action) {
+function asyncReducer(_, action) {
   switch (action.type) {
     case 'pending': {
       // 🐨 replace "pokemon" with "data"
@@ -46,9 +46,11 @@ function useAsync(asyncCallback, initialState, dependencies) {
     if (!promise) return
 
     dispatch({type: 'pending'})
+    console.log('after pending')
     promise.then(
       data => {
         dispatch({type: 'resolved', data})
+        console.log('after resolved')
       },
       error => {
         dispatch({type: 'rejected', error})
@@ -114,11 +116,14 @@ function PokemonInfo({pokemonName}) {
   //   return fetchPokemon(pokemonName)
   // }, {/* initial state */}, [pokemonName])
 
+  // extra 1
+  const asyncCallback = React.useCallback(() => {
+    if (!pokemonName) return
+    return fetchPokemon(pokemonName)
+  }, [pokemonName])
+
   const state = useAsync(
-    () => {
-      if (!pokemonName) return
-      return fetchPokemon(pokemonName)
-    },
+    asyncCallback,
     {
       status: pokemonName ? 'pending' : 'idle',
       data: null,
