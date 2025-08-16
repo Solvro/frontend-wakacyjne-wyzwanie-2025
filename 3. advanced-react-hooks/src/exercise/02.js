@@ -46,11 +46,9 @@ function useAsync(asyncCallback, initialState, dependencies) {
     if (!promise) return
 
     dispatch({type: 'pending'})
-    console.log('after pending')
     promise.then(
       data => {
         dispatch({type: 'resolved', data})
-        console.log('after resolved')
       },
       error => {
         dispatch({type: 'rejected', error})
@@ -64,6 +62,33 @@ function useAsync(asyncCallback, initialState, dependencies) {
   }, dependencies)
 
   return state
+}
+
+// extra 2
+function useAsyncExtra2(initialState) {
+  const [state, dispatch] = React.useReducer(asyncReducer, {
+    status: 'idle',
+    data: null,
+    error: null,
+    ...initialState,
+  })
+
+  const {status, data, error} = state
+
+  const run = React.useCallback(promise => {
+    dispatch({type: 'pending'})
+    promise.then(
+      data => {
+        dispatch({type: 'resolved', data})
+        console.log('after resolved')
+      },
+      error => {
+        dispatch({type: 'rejected', error})
+      },
+    )
+  }, [])
+
+  return {status, data, error, run}
 }
 
 function PokemonInfo({pokemonName}) {
@@ -116,24 +141,42 @@ function PokemonInfo({pokemonName}) {
   //   return fetchPokemon(pokemonName)
   // }, {/* initial state */}, [pokemonName])
 
-  // extra 1
-  const asyncCallback = React.useCallback(() => {
+  // ----- Start extra 1 -----
+  // const asyncCallback = React.useCallback(() => {
+  //   if (!pokemonName) return
+  //   return fetchPokemon(pokemonName)
+  // }, [pokemonName])
+
+  // const state = useAsync(
+  //   asyncCallback,
+  //   {
+  //     status: pokemonName ? 'pending' : 'idle',
+  //     data: null,
+  //     error: null,
+  //   },
+  //   [pokemonName],
+  // )
+
+  // // 🐨 this will change from "pokemon" to "data"
+  // const {data: pokemon, status, error} = state
+  // ----- End extra 1 -----
+
+  // ----- Start extra 2 -----
+  const {
+    data: pokemon,
+    status,
+    error,
+    run,
+  } = useAsyncExtra2({
+    status: pokemonName ? 'pending' : 'idle',
+  })
+
+  React.useEffect(() => {
     if (!pokemonName) return
-    return fetchPokemon(pokemonName)
-  }, [pokemonName])
-
-  const state = useAsync(
-    asyncCallback,
-    {
-      status: pokemonName ? 'pending' : 'idle',
-      data: null,
-      error: null,
-    },
-    [pokemonName],
-  )
-
-  // 🐨 this will change from "pokemon" to "data"
-  const {data: pokemon, status, error} = state
+    const pokemonPromise = fetchPokemon(pokemonName)
+    run(pokemonPromise)
+  }, [pokemonName, run])
+  // ----- End extra 2 -----
 
   switch (status) {
     case 'idle':
