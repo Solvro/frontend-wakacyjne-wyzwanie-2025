@@ -3,9 +3,11 @@
 
 import * as React from 'react'
 
+const formatDebugValue = ({query, state}) => `\`${query}\` => ${state}`
+
 function useMedia(query, initialState = false) {
   const [state, setState] = React.useState(initialState)
-  React.useDebugValue(`\`${query}\` => ${state}`)
+  React.useDebugValue({query, state}, formatDebugValue)
 
   React.useEffect(() => {
     let mounted = true
