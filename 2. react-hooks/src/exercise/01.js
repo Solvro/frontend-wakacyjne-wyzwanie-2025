@@ -4,11 +4,12 @@
 import * as React from 'react'
 
 function Greeting() {
-  // 💣 delete this variable declaration and replace it with a React.useState call
-  const name = ''
+  // używamy hooka useState do przechowywania imienia
+  const [name, setName] = React.useState('')
 
   function handleChange(event) {
-    // 🐨 update the name here based on event.target.value
+  // aktualizujemy stan na podstawie wartości z inputa
+  setName(event.target.value)
   }
 
   return (
