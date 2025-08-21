@@ -1,37 +1,37 @@
-// useImperativeHandle: scroll to top/bottom
-// http://localhost:3000/isolated/exercise/05.js
-
 import * as React from 'react'
 
-// 🐨 wrap this in a React.forwardRef and accept `ref` as the second argument
-function MessagesDisplay({messages}) {
+function MessagesDisplay({messages}, ref){
   const containerRef = React.useRef()
   React.useLayoutEffect(() => {
     scrollToBottom()
   })
 
-  // 💰 you're gonna want this as part of your imperative methods
-  // function scrollToTop() {
-  //   containerRef.current.scrollTop = 0
-  // }
+  function scrollToTop() {
+    containerRef.current.scrollTop = 0
+  }
+
   function scrollToBottom() {
     containerRef.current.scrollTop = containerRef.current.scrollHeight
   }
 
-  // 🐨 call useImperativeHandle here with your ref and a callback function
-  // that returns an object with scrollToTop and scrollToBottom
-
+  React.useImperativeHandle(ref, () => ({
+    scrollToTop,
+    scrollToBottom,
+  }))
   return (
-    <div ref={containerRef} role="log">
-      {messages.map((message, index, array) => (
-        <div key={message.id}>
-          <strong>{message.author}</strong>: <span>{message.content}</span>
-          {array.length - 1 === index ? null : <hr />}
-        </div>
-      ))}
-    </div>
+      <div ref={containerRef} role="log">
+        {messages.map((message, index, array) => (
+            <div key={message.id}>
+              <strong>{message.author}</strong>: <span>{message.content}</span>
+              {array.length - 1 === index ? null : <hr />}
+            </div>
+        ))}
+      </div>
   )
 }
+
+// eslint-disable-next-line no-func-assign
+MessagesDisplay = React.forwardRef(MessagesDisplay)
 
 function App() {
   const messageDisplayRef = React.useRef()
@@ -44,6 +44,7 @@ function App() {
     messages.length > 0
       ? setMessages(allMessages.slice(0, messages.length - 1))
       : null
+
 
   const scrollToTop = () => messageDisplayRef.current.scrollToTop()
   const scrollToBottom = () => messageDisplayRef.current.scrollToBottom()
@@ -101,3 +102,7 @@ const allMessages = [
   `Luke: Wait a minute!`,
   `Luke: Threepio! Come in Threepio! Threepio! Where could he be?`,
 ].map((m, i) => ({id: i, author: m.split(': ')[0], content: m.split(': ')[1]}))
+
+
+
+
