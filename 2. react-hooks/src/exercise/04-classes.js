@@ -1,86 +1,59 @@
-// useState: tic tac toe
-// 💯 (alternate) migrate from classes
-// http://localhost:3000/isolated/exercise/04-classes.js
+import React from 'react'
+import {useLocalStorageState} from '../utils'
 
-import * as React from 'react'
+function Board(){
+  const [squares, setSquares] = useLocalStorageState(
+    'squares',
+    Array(9).fill(null),
+  )
 
-// If you'd rather practice refactoring a class component to a function
-// component with hooks, then go ahead and do this exercise.
-
-// 🦉 You've learned all the hooks you need to know to refactor this Board
-// component to hooks. So, let's make it happen!
-
-class Board extends React.Component {
-  state = {
-    squares:
-      JSON.parse(window.localStorage.getItem('squares')) || Array(9).fill(null),
-  }
-
-  selectSquare(square) {
-    const {squares} = this.state
+  function selectSquare(square){
     const nextValue = calculateNextValue(squares)
-    if (calculateWinner(squares) || squares[square]) {
+    if (calculateWinner(squares) || squares[square]){
       return
     }
     const squaresCopy = [...squares]
     squaresCopy[square] = nextValue
-    this.setState({squares: squaresCopy})
+    setSquares(squaresCopy)
   }
-  renderSquare = i => (
-    <button className="square" onClick={() => this.selectSquare(i)}>
-      {this.state.squares[i]}
+
+const renderSquare = i => (
+    <button className="square" onClick={() => selectSquare(i)}>
+      {squares[i]}
     </button>
-  )
+)
 
-  restart = () => {
-    this.setState({squares: Array(9).fill(null)})
-    this.updateLocalStorage()
+const restart = () => {
+    setSquares(Array(9).fill(null))
   }
 
-  componentDidMount() {
-    this.updateLocalStorage()
-  }
+  const nextValue = calculateNextValue(squares)
+  const winner = calculateWinner(squares)
+  let status = calculateStatus(winner, squares, nextValue)
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.squares !== this.state.squares) {
-      this.updateLocalStorage()
-    }
-  }
-
-  updateLocalStorage() {
-    window.localStorage.setItem('squares', JSON.stringify(this.state.squares))
-  }
-
-  render() {
-    const {squares} = this.state
-    const nextValue = calculateNextValue(squares)
-    const winner = calculateWinner(squares)
-    let status = calculateStatus(winner, squares, nextValue)
-
-    return (
-      <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-        <button className="restart" onClick={this.restart}>
-          restart
-        </button>
+  return (
+    <div>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        {renderSquare(0)}
+        {renderSquare(1)}
+        {renderSquare(2)}
       </div>
-    )
-  }
+      <div className="board-row">
+        {renderSquare(3)}
+        {renderSquare(4)}
+        {renderSquare(5)}
+      </div>
+      <div className="board-row">
+        {renderSquare(6)}
+        {renderSquare(7)}
+        {renderSquare(8)}
+      </div>
+      <button className="restart" onClick={restart}>
+        restart
+      </button>
+    </div>
+  )
 }
 
 function Game() {
