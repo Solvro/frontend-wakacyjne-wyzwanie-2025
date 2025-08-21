@@ -1,12 +1,9 @@
-// useDebugValue: useMedia
-// http://localhost:3000/isolated/exercise/06.js
-
 import * as React from 'react'
 
+const formatDebugValue = ({query, state}) => `\`${query}\` => ${state}`
 function useMedia(query, initialState = false) {
   const [state, setState] = React.useState(initialState)
-  // 🐨 call React.useDebugValue here.
-  // 💰 here's the formatted label I use: `\`${query}\` => ${state}`
+  React.useDebugValue({query, state}, formatDebugValue)
 
   React.useEffect(() => {
     let mounted = true
@@ -31,6 +28,7 @@ function useMedia(query, initialState = false) {
 }
 
 function Box() {
+  React.useDebugValue('Żelo')
   const isBig = useMedia('(min-width: 1000px)')
   const isMedium = useMedia('(max-width: 999px) and (min-width: 700px)')
   const isSmall = useMedia('(max-width: 699px)')
