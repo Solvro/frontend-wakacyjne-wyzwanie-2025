@@ -1,6 +1,3 @@
-// useCallback: custom hooks
-// http://localhost:3000/isolated/exercise/02.js
-
 import * as React from 'react'
 import {
   fetchPokemon,
@@ -13,15 +10,12 @@ import {
 function asyncReducer(state, action) {
   switch (action.type) {
     case 'pending': {
-      // 🐨 replace "pokemon" with "data"
       return {status: 'pending', data: null, error: null}
     }
     case 'resolved': {
-      // 🐨 replace "pokemon" with "data" (in the action too!)
       return {status: 'resolved', data: action.data, error: null}
     }
     case 'rejected': {
-      // 🐨 replace "pokemon" with "data"
       return {status: 'rejected', data: null, error: action.error}
     }
     default: {
@@ -30,7 +24,7 @@ function asyncReducer(state, action) {
   }
 }
 
-function useAsync(initialState, asyncCallback, dependencies) {
+function useAsync(initialState) {
   const [state, dispatch] = React.useReducer(asyncReducer, {
     status: 'idle',
     data: null,
@@ -38,13 +32,7 @@ function useAsync(initialState, asyncCallback, dependencies) {
     ...initialState,
   })
 
-  React.useEffect(() => {
-    const promise = asyncCallback()
-
-    if (!promise) {
-      return
-    }
-
+  const run = React.useCallback(promise => {
     dispatch({type: 'pending'})
     promise.then(
       data => {
@@ -54,24 +42,25 @@ function useAsync(initialState, asyncCallback, dependencies) {
         dispatch({type: 'rejected', error})
       },
     )
-  }, dependencies)
+  }, [])
 
-  return state
+  return {...state, run}
 }
 
 function PokemonInfo({pokemonName}) {
-  const state = useAsync(
-    {status: pokemonName ? 'pending' : 'idle'},
-    () => {
-      if (!pokemonName) {
-        return
-      }
-      return fetchPokemon(pokemonName)
-    },
-    [pokemonName],
-  )
+  const {
+    status,
+    data: pokemon,
+    error,
+    run,
+  } = useAsync({status: pokemonName ? 'pending' : 'idle'})
 
-  const {status, data: pokemon, error} = state
+  React.useEffect(() => {
+    if (!pokemonName) {
+      return
+    }
+    return run(fetchPokemon(pokemonName))
+  }, [pokemonName, run])
 
   switch (status) {
     case 'idle':
