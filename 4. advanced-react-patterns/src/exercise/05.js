@@ -4,6 +4,7 @@
 import * as React from 'react'
 import {Switch} from '../switch'
 
+//
 const toggleReducerTypes = {
   toggle: 'toggle',
   reset: 'reset',
