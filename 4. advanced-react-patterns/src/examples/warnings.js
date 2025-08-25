@@ -7,11 +7,11 @@ function App() {
   const [animal, setAnimal] = React.useState('tiger')
   return (
     <div>
-      <div>
+      {/* <div>
         <label>
           Read only (missing onChange): <input value="yo" />
         </label>
-      </div>
+      </div> */}
       <div>
         <button onClick={() => setName('bob')}>Set name to bob</button>
         <label>
