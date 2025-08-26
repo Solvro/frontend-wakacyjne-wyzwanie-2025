@@ -3,10 +3,13 @@
 
 import * as React from 'react'
 
+const formatMediaValue = ({query, state}) => {
+  return `\`${query}\` => ${state}`;
+}
+
 function useMedia(query, initialState = false) {
   const [state, setState] = React.useState(initialState)
-  // 🐨 call React.useDebugValue here.
-  // 💰 here's the formatted label I use: `\`${query}\` => ${state}`
+  React.useDebugValue({query, state}, formatMediaValue);
 
   React.useEffect(() => {
     let mounted = true
