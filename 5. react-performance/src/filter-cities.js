@@ -12,6 +12,7 @@ export function getItems(filter) {
   if (!filter) {
     return allItems
   }
+  // comment
   return matchSorter(allItems, filter, {
     keys: ['name'],
   })
