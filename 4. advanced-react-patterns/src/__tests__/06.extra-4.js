@@ -2,8 +2,8 @@ import * as React from 'react'
 import {alfredTip} from '@kentcdodds/react-workshop-app/test-utils'
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import {Toggle} from '../final/06.extra-4'
-// import {Toggle} from '../exercise/06'
+//import {Toggle} from '../final/06.extra-4'
+import {Toggle} from '../exercise/06.extra-4'
 
 beforeEach(() => {
   jest.spyOn(console, 'error').mockImplementation(() => {})
