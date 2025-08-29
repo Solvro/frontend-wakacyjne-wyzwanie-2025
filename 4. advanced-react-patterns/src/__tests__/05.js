@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {renderToggle, screen, userEvent} from '../../test/utils'
-import App from '../final/05'
-// import App from '../exercise/05'
+// import App from '../final/05'
+import App from '../exercise/05'
 
 test('renders a toggle component', async () => {
   const {toggleButton, toggle} = renderToggle(<App />)
