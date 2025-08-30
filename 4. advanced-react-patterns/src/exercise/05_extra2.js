@@ -1,6 +1,5 @@
-// state reducer
-// 💯 state reducer action types
-// http://localhost:3000/isolated/final/05.extra-2.js
+// State Reducer
+// http://localhost:3000/isolated/exercise/05.js
 
 import * as React from 'react'
 import {Switch} from '../switch'
@@ -29,13 +28,13 @@ function toggleReducer(state, {type, initialState}) {
   }
 }
 
-function useToggle({initialOn = false, reducer = toggleReducer} = {}) {
+function useToggle({initialOn = false, reducer} = {}) {
   const {current: initialState} = React.useRef({on: initialOn})
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const {on} = state
 
-  const toggle = () => dispatch({type: actionTypes.toggle})
-  const reset = () => dispatch({type: actionTypes.reset, initialState})
+  const toggle = () => dispatch({type: 'toggle'})
+  const reset = () => dispatch({type: 'reset', initialState})
 
   function getTogglerProps({onClick, ...props} = {}) {
     return {
@@ -60,16 +59,13 @@ function useToggle({initialOn = false, reducer = toggleReducer} = {}) {
     getResetterProps,
   }
 }
-// export {useToggle, toggleReducer, actionTypes}
-
-// import {useToggle, toggleReducer, actionTypes} from './use-toggle'
 
 function App() {
   const [timesClicked, setTimesClicked] = React.useState(0)
   const clickedTooMuch = timesClicked >= 4
 
   function toggleStateReducer(state, action) {
-    if (action.type === actionTypes.toggle && clickedTooMuch) {
+    if (action.type === actionTypes.toggle && timesClicked >= 4) {
       return {on: state.on}
     }
     return toggleReducer(state, action)
@@ -104,3 +100,8 @@ function App() {
 }
 
 export default App
+
+/*
+eslint
+  no-unused-vars: "off",
+*/
