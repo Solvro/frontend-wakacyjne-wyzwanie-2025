@@ -10,7 +10,8 @@ import {
   updateGridCellState,
 } from '../utils'
 
-const AppStateContext = React.createContext()
+const StateContext = React.createContext()
+const DispatchContext = React.createContext()
 
 const initialGrid = Array.from({length: 100}, () =>
   Array.from({length: 100}, () => Math.random() * 100),
@@ -38,25 +39,35 @@ function AppProvider({children}) {
     dogName: '',
     grid: initialGrid,
   })
+  const stateMemo = React.useMemo(() => state, [state])
   // 🐨 memoize this value with React.useMemo
-  const value = [state, dispatch]
   return (
-    <AppStateContext.Provider value={value}>
-      {children}
-    </AppStateContext.Provider>
+    <StateContext.Provider value={stateMemo}>
+      <DispatchContext.Provider value={dispatch}>
+        {children}
+      </DispatchContext.Provider>
+    </StateContext.Provider>
   )
 }
 
 function useAppState() {
-  const context = React.useContext(AppStateContext)
+  const context = React.useContext(StateContext)
   if (!context) {
     throw new Error('useAppState must be used within the AppProvider')
   }
   return context
 }
 
+function useAppDispatch() {
+  const context = React.useContext(DispatchContext)
+  if (!context) {
+    throw new Error('useAppDispatch must be used within the AppProvider')
+  }
+  return context
+}
+
 function Grid() {
-  const [, dispatch] = useAppState()
+  const dispatch = useAppDispatch()
   const [rows, setRows] = useDebouncedState(50)
   const [columns, setColumns] = useDebouncedState(50)
   const updateGridData = () => dispatch({type: 'UPDATE_GRID'})
@@ -74,7 +85,8 @@ function Grid() {
 Grid = React.memo(Grid)
 
 function Cell({row, column}) {
-  const [state, dispatch] = useAppState()
+  const state = useAppState()
+  const dispatch = useAppDispatch()
   const cell = state.grid[row][column]
   const handleClick = () => dispatch({type: 'UPDATE_GRID_CELL', row, column})
   return (
@@ -93,7 +105,8 @@ function Cell({row, column}) {
 Cell = React.memo(Cell)
 
 function DogNameInput() {
-  const [state, dispatch] = useAppState()
+  const state = useAppState()
+  const dispatch = useAppDispatch()
   const {dogName} = state
 
   function handleChange(event) {
