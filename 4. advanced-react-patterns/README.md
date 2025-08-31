@@ -1,5 +1,5 @@
 <div>
-  <h1 align="center"><a href="https://epicreact.dev/patterns">🤯 Advanced React Patterns 🚀 EpicReact.Dev</a></h1>
+  <h1 align="center"><a href="https://www.epicreact.dev/modules/advanced-react-patterns-v1/advanced-react-patterns-welcome">🤯 Advanced React Patterns 🚀 EpicReact.Dev</a></h1>
   <strong>
     Learn how to build simple and flexible React Components and Hooks using
     modern patterns
@@ -240,6 +240,8 @@ Thanks goes to these wonderful people
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://junagao.com"><img src="https://avatars.githubusercontent.com/u/615616?v=4?s=100" width="100px;" alt="juliane nagao"/><br /><sub><b>juliane nagao</b></sub></a><br /><a href="https://github.com/kentcdodds/advanced-react-patterns/commits?author=junagao" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://www.ianjmacintosh.com"><img src="https://avatars.githubusercontent.com/u/1103259?v=4?s=100" width="100px;" alt="Ian MacIntosh"/><br /><sub><b>Ian MacIntosh</b></sub></a><br /><a href="https://github.com/kentcdodds/advanced-react-patterns/commits?author=ianjmacintosh" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Creeland"><img src="https://avatars.githubusercontent.com/u/518406?v=4?s=100" width="100px;" alt="Creeland A. Provinsal "/><br /><sub><b>Creeland A. Provinsal </b></sub></a><br /><a href="https://github.com/kentcdodds/advanced-react-patterns/commits?author=Creeland" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
@@ -265,7 +267,7 @@ Thank you! https://kcd.im/arp-ws-feedback
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org
 [git]: https://git-scm.com/
-[build-badge]: https://img.shields.io/github/workflow/status/kentcdodds/advanced-react-patterns/validate/main?logo=github&style=flat-square
+[build-badge]: https://img.shields.io/github/actions/workflow/status/kentcdodds/advanced-react-patterns/validate.yml?branch=main&logo=github&style=flat-square
 [build]: https://github.com/kentcdodds/advanced-react-patterns/actions?query=workflow%3Avalidate
 [license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
 [license]: https://github.com/kentcdodds/advanced-react-patterns/blob/main/LICENSE.md
