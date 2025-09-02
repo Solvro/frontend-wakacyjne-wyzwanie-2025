@@ -1,6 +1,3 @@
-// React.memo for reducing unnecessary re-renders
-// http://localhost:3000/isolated/exercise/03.js
-
 import * as React from 'react'
 import {useCombobox} from '../use-combobox'
 import {getItems} from '../workerized-filter-cities'
@@ -30,7 +27,8 @@ function Menu({
     </ul>
   )
 }
-// 🐨 Memoize the Menu here using React.memo
+
+Menu = React.memo(Menu)
 
 function ListItem({
   getItemProps,
@@ -56,7 +54,8 @@ function ListItem({
     />
   )
 }
-// 🐨 Memoize the ListItem here using React.memo
+
+ListItem = React.memo(ListItem)
 
 function App() {
   const forceRerender = useForceRerender()
@@ -114,8 +113,3 @@ function App() {
 }
 
 export default App
-
-/*
-eslint
-  no-func-assign: 0,
-*/
