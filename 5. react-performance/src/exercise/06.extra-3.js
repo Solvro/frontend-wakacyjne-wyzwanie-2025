@@ -1,6 +1,3 @@
-// Optimize context value
-// http://localhost:3000/isolated/exercise/05.js
-
 import * as React from 'react'
 import {
   useForceRerender,
@@ -11,6 +8,8 @@ import {
 } from '../utils'
 
 const AppStateContext = React.createContext()
+const AppDispatchContext = React.createContext()
+const DogNameContext = React.createContext()
 
 const initialGrid = Array.from({length: 100}, () =>
   Array.from({length: 100}, () => Math.random() * 100),
@@ -18,9 +17,6 @@ const initialGrid = Array.from({length: 100}, () =>
 
 function appReducer(state, action) {
   switch (action.type) {
-    case 'TYPED_IN_DOG_INPUT': {
-      return {...state, dogName: action.dogName}
-    }
     case 'UPDATE_GRID_CELL': {
       return {...state, grid: updateGridCellState(state.grid, action)}
     }
@@ -33,18 +29,35 @@ function appReducer(state, action) {
   }
 }
 
+function dogNameReducer(state, action) {
+  switch (action.type) {
+    case 'TYPED_IN_DOG_INPUT': {
+      return {...state, dogName: action.dogName}
+    }
+    default: {
+      throw new Error(`Unhandled action type: ${action.type}`)
+    }
+  }
+}
+
 function AppProvider({children}) {
   const [state, dispatch] = React.useReducer(appReducer, {
-    dogName: '',
     grid: initialGrid,
   })
-
-  const value = React.useMemo(() => [state, dispatch], [state])
   return (
-    <AppStateContext.Provider value={value}>
-      {children}
+    <AppStateContext.Provider value={state}>
+      <AppDispatchContext.Provider value={dispatch}>
+        {children}
+      </AppDispatchContext.Provider>
     </AppStateContext.Provider>
   )
+}
+
+function DogNameProvider(props) {
+  const [state, dispatch] = React.useReducer(dogNameReducer, {
+    dogName: '',
+  })
+  return <DogNameContext.Provider value={[state, dispatch]} {...props} />
 }
 
 function useAppState() {
@@ -55,8 +68,24 @@ function useAppState() {
   return context
 }
 
+function useAppDispatch() {
+  const context = React.useContext(AppDispatchContext)
+  if (!context) {
+    throw new Error('useAppDispatch must be used within the AppProvider')
+  }
+  return context
+}
+
+function useDogState() {
+  const context = React.useContext(DogNameContext)
+  if (!context) {
+    throw new Error('useDogState must be used within the DogNameProvider')
+  }
+  return context
+}
+
 function Grid() {
-  const [, dispatch] = useAppState()
+  const dispatch = useAppDispatch()
   const [rows, setRows] = useDebouncedState(50)
   const [columns, setColumns] = useDebouncedState(50)
   const updateGridData = () => dispatch({type: 'UPDATE_GRID'})
@@ -73,9 +102,18 @@ function Grid() {
 }
 Grid = React.memo(Grid)
 
-function Cell({row, column}) {
-  const [state, dispatch] = useAppState()
-  const cell = state.grid[row][column]
+function withStateSlice(Comp, slice) {
+  const MemoComp = React.memo(Comp)
+  function Wrapper(props, ref) {
+    const state = useAppState()
+    return <MemoComp ref={ref} state={slice(state, props)} {...props} />
+  }
+  Wrapper.displayName = `withStateSlice(${Comp.displayName || Comp.name})`
+  return React.memo(React.forwardRef(Wrapper))
+}
+
+function Cell({state: cell, row, column}) {
+  const dispatch = useAppDispatch()
   const handleClick = () => dispatch({type: 'UPDATE_GRID_CELL', row, column})
   return (
     <button
@@ -90,10 +128,11 @@ function Cell({row, column}) {
     </button>
   )
 }
-Cell = React.memo(Cell)
+Cell = withStateSlice(Cell, (state, {row, column}) => state.grid[row][column])
 
 function DogNameInput() {
-  const [state, dispatch] = useAppState()
+  const [state, dispatch] = useDogState()
+
   const {dogName} = state
 
   function handleChange(event) {
@@ -118,18 +157,19 @@ function DogNameInput() {
     </form>
   )
 }
-
 function App() {
   const forceRerender = useForceRerender()
   return (
     <div className="grid-app">
       <button onClick={forceRerender}>force rerender</button>
-      <AppProvider>
-        <div>
+      <div>
+        <DogNameProvider>
           <DogNameInput />
+        </DogNameProvider>
+        <AppProvider>
           <Grid />
-        </div>
-      </AppProvider>
+        </AppProvider>
+      </div>
     </div>
   )
 }

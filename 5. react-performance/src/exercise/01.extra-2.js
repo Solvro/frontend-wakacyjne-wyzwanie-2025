@@ -1,9 +1,6 @@
-// Code splitting
-// http://localhost:3000/isolated/exercise/01.js
-
 import * as React from 'react'
 
-const Globe = React.lazy(() => import('../globe'))
+const Globe = React.lazy(() => import(/* webpackPrefetch: true */ '../globe'))
 
 function App() {
   const [showGlobe, setShowGlobe] = React.useState(false)
