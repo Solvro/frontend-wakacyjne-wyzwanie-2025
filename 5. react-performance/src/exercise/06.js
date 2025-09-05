@@ -19,11 +19,6 @@ const initialGrid = Array.from({length: 100}, () =>
 
 function appReducer(state, action) {
   switch (action.type) {
-    // we're no longer managing the dogName state in our reducer
-    // 💣 remove this case
-    case 'TYPED_IN_DOG_INPUT': {
-      return {...state, dogName: action.dogName}
-    }
     case 'UPDATE_GRID_CELL': {
       return {...state, grid: updateGridCellState(state.grid, action)}
     }
@@ -38,8 +33,6 @@ function appReducer(state, action) {
 
 function AppProvider({children}) {
   const [state, dispatch] = React.useReducer(appReducer, {
-    // 💣 remove the dogName state because we're no longer managing that
-    dogName: '',
     grid: initialGrid,
   })
   return (
@@ -108,14 +101,12 @@ Cell = React.memo(Cell)
 function DogNameInput() {
   // 🐨 replace the useAppState and useAppDispatch with a normal useState here
   // to manage the dogName locally within this component
-  const state = useAppState()
-  const dispatch = useAppDispatch()
-  const {dogName} = state
+  const [dogName, setDogName] = React.useState()
 
   function handleChange(event) {
     const newDogName = event.target.value
     // 🐨 change this to call your state setter that you get from useState
-    dispatch({type: 'TYPED_IN_DOG_INPUT', dogName: newDogName})
+    setDogName(newDogName)
   }
 
   return (
