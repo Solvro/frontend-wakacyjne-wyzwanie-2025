@@ -30,6 +30,7 @@ function Menu({
     </ul>
   )
 }
+Menu = React.memo(Menu);
 // 🐨 Memoize the Menu here using React.memo
 
 function ListItem({
@@ -56,6 +57,7 @@ function ListItem({
     />
   )
 }
+ListItem = React.memo(ListItem);
 // 🐨 Memoize the ListItem here using React.memo
 
 function App() {
