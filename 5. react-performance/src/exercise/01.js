@@ -2,10 +2,9 @@
 // http://localhost:3000/isolated/exercise/01.js
 
 import * as React from 'react'
-// 💣 remove this import
-import Globe from '../globe'
 
 // 🐨 use React.lazy to create a Globe component which uses a dynamic import
+const Globe = React.lazy(() => import('../globe'))
 // to get the Globe component from the '../globe' module.
 
 function App() {
@@ -34,9 +33,11 @@ function App() {
         />
         {' show globe'}
       </label>
+      <React.Suspense fallback = {<div>Globe</div>}>
       <div style={{width: 400, height: 400}}>
         {showGlobe ? <Globe /> : null}
-      </div>
+      </div>  
+      </React.Suspense>
     </div>
   )
 }
