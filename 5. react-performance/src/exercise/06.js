@@ -251,6 +251,7 @@ function App() {
             <DogNameInputExtra1 />
           </DogProvider>
           <Grid />
+          AppProvider
         </div>
       </AppProvider>
     </div>
