@@ -4,6 +4,7 @@
 import * as React from 'react'
 // 🐨 import the useVirtual hook from react-virtual
 import {useVirtual} from 'react-virtual'
+import {useVirtualizer} from '@tanstack/react-virtual'
 import {useCombobox} from '../use-combobox'
 import {getItems} from '../workerized-filter-cities'
 import {useAsync, useForceRerender} from '../utils'
@@ -41,7 +42,9 @@ function Menu({
       */}
       {/* instead of mapping the "items" we're going to map over the virtualRows */}
 
-      <li style={{height: virtualizer.totalSize}} />
+      {/* ===== deprecated in favor of useVirtualizer (getTotalSize is the hooks'method) ===== */}
+      {/* <li style={{height: virtualizer.totalSize}} /> */}
+      <li style={{height: virtualizer.getTotalSize()}} />
 
       {/* 🐨 swap `items` with `virtualRows` */}
       {/*
@@ -65,7 +68,9 @@ function Menu({
         </ListItem>
       ))} */}
 
-      {virtualizer.virtualItems.map(({index, size, start}) => {
+      {/* ===== deprecated in favor of useVirtualizer (getVirtualItems is the hooks'method) ===== */}
+      {/* {virtualizer.virtualItems.map(({index, size, start}) => { */}
+      {virtualizer.getVirtualItems.map(({index, size, start}) => {
         const item = items[index]
         return (
           <ListItem
@@ -144,11 +149,18 @@ function App() {
   // I read it's deprecated in favour of useVirtualizer
   // maybe I'll try replacing it later
 
-  const virtualizer = useVirtual({
-    size: items.length,
-    parentRef: listRef,
-    estimateSize: React.useCallback(() => 20, []),
-    overscan: 6,
+  // ===== deprecated in favor of useVirtualizer =====
+  // const virtualizer = useVirtual({
+  //   size: items.length,
+  //   parentRef: listRef,
+  //   estimateSize: React.useCallback(() => 20, []),
+  //   overscan: 6,
+  // })
+
+  const virtualizer = useVirtualizer({
+    count: items.length,
+    getScrollElement: () => listRef.current,
+    estimateSize: () => 20,
   })
 
   const {
