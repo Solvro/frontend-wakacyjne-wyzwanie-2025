@@ -1,4 +1,5 @@
-import makeFilterCitiesWorker from 'workerize!./filter-cities'
+// I think it should be workerize-loader, not workerize
+import makeFilterCitiesWorker from 'workerize-loader!./filter-cities'
 
 const {getItems} = makeFilterCitiesWorker()
 

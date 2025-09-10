@@ -5,6 +5,9 @@ import * as React from 'react'
 import {useCombobox} from '../use-combobox'
 import {getItems} from '../workerized-filter-cities'
 import {useAsync, useForceRerender} from '../utils'
+import {a} from 'react-spring'
+
+// React.memo make rerendering slightly faster but in this simple case there is no visible difference
 
 function Menu({
   items,
@@ -21,8 +24,13 @@ function Menu({
           getItemProps={getItemProps}
           item={item}
           index={index}
-          selectedItem={selectedItem}
-          highlightedIndex={highlightedIndex}
+          // (commented in extra 2)
+          // selectedItem={selectedItem}
+          // highlightedIndex={highlightedIndex}
+
+          // extra 2
+          isHighlighted={highlightedIndex === index}
+          isSelected={selectedItem?.id === index}
         >
           {item.name}
         </ListItem>
@@ -30,18 +38,34 @@ function Menu({
     </ul>
   )
 }
+
 // 🐨 Memoize the Menu here using React.memo
+
+// it does not prevent useless rerending here beacuse of the line:
+//    const items = allItems.slice(0, 100)
+// Every rerender items are not referentially equal
+// Menu gets rerendered because of it
+// I'll wrap it in useCallback
+
+Menu = React.memo(Menu)
 
 function ListItem({
   getItemProps,
   item,
   index,
-  selectedItem,
-  highlightedIndex,
+  // (commented in extra 2)
+  // selectedItem,
+  // highlightedIndex,
+
+  // extra 2
+  isHighlighted,
+  isSelected,
   ...props
 }) {
-  const isSelected = selectedItem?.id === item.id
-  const isHighlighted = highlightedIndex === index
+  // (commented in extra 2)
+  // const isSelected = selectedItem?.id === item.id
+  // const isHighlighted = highlightedIndex === index
+
   return (
     <li
       {...getItemProps({
@@ -56,7 +80,34 @@ function ListItem({
     />
   )
 }
+
+// extra 1
+const isListItemTheSame = (oldProps, newProps) => {
+  if (oldProps.getItemProps !== newProps.getItemProps) return false
+  if (oldProps.item !== newProps.item) return false
+  if (oldProps.index !== newProps.index) return false
+  if (oldProps.selectedItem !== newProps.selectedItem) return false
+
+  if (
+    oldProps.highlightedIndex !== newProps.highlightedIndex &&
+    (oldProps.highlightedIndex === oldProps.index) !==
+      (newProps.highlightedIndex === newProps.index)
+  )
+    return false
+
+  return true
+}
+
 // 🐨 Memoize the ListItem here using React.memo
+
+// exercise
+// ListItem = React.memo(ListItem)
+
+// extra 1
+// ListItem = React.memo(ListItem, isListItemTheSame)
+
+// extra 2
+ListItem = React.memo(ListItem)
 
 function App() {
   const forceRerender = useForceRerender()
@@ -66,7 +117,12 @@ function App() {
   React.useEffect(() => {
     run(getItems(inputValue))
   }, [inputValue, run])
-  const items = allItems.slice(0, 100)
+
+  // has to be wrapped in useMemo because it's a Menu prop
+  const items = React.useMemo(() => {
+    console.log('rerender check')
+    return allItems.slice(0, 100)
+  }, [allItems])
 
   const {
     selectedItem,
