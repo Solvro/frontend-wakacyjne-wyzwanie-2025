@@ -6,7 +6,7 @@ import {useCombobox} from '../use-combobox'
 import {getItems} from '../workerized-filter-cities'
 import {useAsync, useForceRerender} from '../utils'
 
-function Menu({
+const Menu = React.memo(function Menu({
   items,
   getMenuProps,
   getItemProps,
@@ -29,10 +29,8 @@ function Menu({
       ))}
     </ul>
   )
-}
-// 🐨 Memoize the Menu here using React.memo
-
-function ListItem({
+})
+const ListItem = React.memo(function ListItem({
   getItemProps,
   item,
   index,
@@ -55,9 +53,7 @@ function ListItem({
       })}
     />
   )
-}
-// 🐨 Memoize the ListItem here using React.memo
-
+})
 function App() {
   const forceRerender = useForceRerender()
   const [inputValue, setInputValue] = React.useState('')
